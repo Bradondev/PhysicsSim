@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsal3jaggmh38"]
+
+[ext_resource type="Script" path="res://Code/Physics Diagrams.gd" id="1_85yhm"]
+[ext_resource type="Texture2D" uid="uid://0mqanwpuq7xy" path="res://Art/Bluebox.png" id="1_ebc16"]
+[ext_resource type="Texture2D" uid="uid://cc0pjjnc6ky5f" path="res://Art/Line.png" id="2_yc852"]
+[ext_resource type="Theme" uid="uid://dx6seic2fgb38" path="res://Sence/new_theme.tres" id="4_y3yfs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5a8k"]
+size = Vector2(1161, 21.5)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("H", "AngledFloor", "PivPoint", "AngelText", "AngelSlider", "Box")]
+script = ExtResource("1_85yhm")
+H = NodePath("H")
+AngledFloor = NodePath("floor")
+PivPoint = NodePath("floor/HPoint")
+AngelText = NodePath("Angeltext")
+AngelSlider = NodePath("AngelSlider")
+Box = NodePath("Bluebox")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_right = 1158.0
+offset_bottom = 656.0
+color = Color(0.211765, 0.211765, 0.211765, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Bluebox" type="Sprite2D" parent="."]
+position = Vector2(573, 497)
+rotation = 0.523599
+scale = Vector2(3.1875, 3.03125)
+texture = ExtResource("1_ebc16")
+offset = Vector2(0, -17)
+
+[node name="H" type="StaticBody2D" parent="."]
+position = Vector2(324, 356)
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+metadata/_edit_group_ = true
+
+[node name="BlueLine" type="Sprite2D" parent="H"]
+position = Vector2(1168.24, 7.70924)
+scale = Vector2(73.5633, 10.7972)
+texture = ExtResource("2_yc852")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="H"]
+position = Vector2(572.38, 7.47326)
+shape = SubResource("RectangleShape2D_d5a8k")
+
+[node name="floor" type="StaticBody2D" parent="."]
+position = Vector2(818, 641)
+rotation = 0.523599
+scale = Vector2(0.5, 0.5)
+metadata/_edit_group_ = true
+
+[node name="BlueLine" type="Sprite2D" parent="floor"]
+position = Vector2(-571.745, -0.931702)
+scale = Vector2(36.2737, 9.86)
+texture = ExtResource("2_yc852")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor"]
+position = Vector2(-571.745, -0.931686)
+shape = SubResource("RectangleShape2D_d5a8k")
+
+[node name="HPoint" type="Node2D" parent="floor"]
+position = Vector2(-1141.19, -0.845242)
+
+[node name="boxpoint" type="Node2D" parent="floor"]
+position = Vector2(-572.549, 0.316624)
+
+[node name="arcPoint" type="Node2D" parent="floor"]
+position = Vector2(-354.468, 6.0436)
+
+[node name="floor2" type="StaticBody2D" parent="."]
+position = Vector2(578, 647)
+metadata/_edit_group_ = true
+
+[node name="BlueLine" type="Sprite2D" parent="floor2"]
+scale = Vector2(36.2737, 9.86)
+texture = ExtResource("2_yc852")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor2"]
+shape = SubResource("RectangleShape2D_d5a8k")
+
+[node name="Angeltext" type="LineEdit" parent="."]
+offset_left = 825.0
+offset_top = 62.0
+offset_right = 1103.0
+offset_bottom = 118.0
+theme = ExtResource("4_y3yfs")
+placeholder_text = "Angel"
+
+[node name="AngelSlider" type="HSlider" parent="."]
+offset_left = 825.0
+offset_top = 118.0
+offset_right = 1103.0
+offset_bottom = 134.0
+max_value = 90.0
+value = 26.0
+ticks_on_borders = true
+
+[node name="arcPoint" type="Node2D" parent="."]
+position = Vector2(825, 637)
+
+[connection signal="text_changed" from="Angeltext" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Angeltext" to="." method="_on_angeltext_text_submitted"]
+[connection signal="value_changed" from="AngelSlider" to="." method="_on_angel_slider_value_changed"]

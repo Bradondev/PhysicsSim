@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://jxyc830csjpi"
+path="res://.godot/imported/Passage 7 Basic.ttf-a385f34e125b7120e3514595b2cc805c.fontdata"
+
+[deps]
+
+source_file="res://Art/Passage 7 Basic.ttf"
+dest_files=["res://.godot/imported/Passage 7 Basic.ttf-a385f34e125b7120e3514595b2cc805c.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
