@@ -1,35 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsal3jaggmh38"]
+[gd_scene load_steps=7 format=3 uid="uid://bsal3jaggmh38"]
 
 [ext_resource type="Script" path="res://Code/Physics Diagrams.gd" id="1_85yhm"]
 [ext_resource type="Texture2D" uid="uid://0mqanwpuq7xy" path="res://Art/Bluebox.png" id="1_ebc16"]
 [ext_resource type="Texture2D" uid="uid://cc0pjjnc6ky5f" path="res://Art/Line.png" id="2_yc852"]
+[ext_resource type="Texture2D" uid="uid://ca3w7fe3jpbsi" path="res://Art/Arrow.png" id="3_vqvot"]
 [ext_resource type="Theme" uid="uid://dx6seic2fgb38" path="res://Sence/new_theme.tres" id="4_y3yfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d5a8k"]
 size = Vector2(1161, 21.5)
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("H", "AngledFloor", "PivPoint", "AngelText", "AngelSlider", "Box")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("H", "AngledFloor", "PivPoint", "angleText", "angleSlider", "Box")]
 script = ExtResource("1_85yhm")
 H = NodePath("H")
 AngledFloor = NodePath("floor")
 PivPoint = NodePath("floor/HPoint")
-AngelText = NodePath("Angeltext")
-AngelSlider = NodePath("AngelSlider")
+angleText = NodePath("Angeltext")
+angleSlider = NodePath("AngelSlider")
 Box = NodePath("Bluebox")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_right = 1158.0
 offset_bottom = 656.0
 color = Color(0.211765, 0.211765, 0.211765, 1)
 metadata/_edit_use_anchors_ = true
-
-[node name="Bluebox" type="Sprite2D" parent="."]
-position = Vector2(573, 497)
-rotation = 0.523599
-scale = Vector2(3.1875, 3.03125)
-texture = ExtResource("1_ebc16")
-offset = Vector2(0, -17)
 
 [node name="H" type="StaticBody2D" parent="."]
 position = Vector2(324, 356)
@@ -81,6 +74,32 @@ texture = ExtResource("2_yc852")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor2"]
 shape = SubResource("RectangleShape2D_d5a8k")
 
+[node name="Bluebox" type="Sprite2D" parent="."]
+position = Vector2(573, 497)
+rotation = 0.523599
+scale = Vector2(3.1875, 3.03125)
+texture = ExtResource("1_ebc16")
+offset = Vector2(0, -17)
+
+[node name="NUp" type="Sprite2D" parent="Bluebox"]
+position = Vector2(-0.236526, -55.8534)
+scale = Vector2(1.6, 1.371)
+texture = ExtResource("3_vqvot")
+
+[node name="Label" type="Label" parent="Bluebox"]
+offset_left = -11.5622
+offset_top = -111.45
+offset_right = 22.4378
+offset_bottom = -63.4504
+theme = ExtResource("4_y3yfs")
+text = "N"
+
+[node name="NUp2" type="Sprite2D" parent="Bluebox"]
+position = Vector2(-1.61368, 17.7214)
+rotation = 3.14159
+scale = Vector2(1.6, 3.32207)
+texture = ExtResource("3_vqvot")
+
 [node name="Angeltext" type="LineEdit" parent="."]
 offset_left = 825.0
 offset_top = 62.0
@@ -88,6 +107,7 @@ offset_right = 1103.0
 offset_bottom = 118.0
 theme = ExtResource("4_y3yfs")
 placeholder_text = "Angel"
+max_length = 2
 
 [node name="AngelSlider" type="HSlider" parent="."]
 offset_left = 825.0
@@ -101,6 +121,59 @@ ticks_on_borders = true
 [node name="arcPoint" type="Node2D" parent="."]
 position = Vector2(825, 637)
 
+[node name="mass edit" type="LineEdit" parent="."]
+offset_left = 825.0
+offset_top = 134.0
+offset_right = 1103.0
+offset_bottom = 190.0
+theme = ExtResource("4_y3yfs")
+placeholder_text = "Mass in kg"
+max_length = 2
+
+[node name="μ" type="LineEdit" parent="."]
+offset_left = 825.0
+offset_top = 205.0
+offset_right = 1103.0
+offset_bottom = 261.0
+theme = ExtResource("4_y3yfs")
+text = ".5"
+placeholder_text = "μ"
+max_length = 6
+
+[node name="Nfunction" type="Label" parent="."]
+offset_left = 49.0
+offset_top = 56.0
+offset_right = 109.0
+offset_bottom = 104.0
+theme = ExtResource("4_y3yfs")
+text = "N = M(g)Cos(angle)"
+
+[node name="N" type="Label" parent="."]
+offset_left = 43.0
+offset_top = 118.0
+offset_right = 103.0
+offset_bottom = 166.0
+theme = ExtResource("4_y3yfs")
+text = "N ="
+
+[node name="FFunction" type="Label" parent="."]
+offset_left = 43.0
+offset_top = 205.0
+offset_right = 103.0
+offset_bottom = 253.0
+theme = ExtResource("4_y3yfs")
+text = "Friction  = μN"
+
+[node name="F" type="Label" parent="."]
+offset_left = 43.0
+offset_top = 258.0
+offset_right = 152.0
+offset_bottom = 323.0
+theme = ExtResource("4_y3yfs")
+text = "Friction = "
+
 [connection signal="text_changed" from="Angeltext" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="Angeltext" to="." method="_on_angeltext_text_submitted"]
 [connection signal="value_changed" from="AngelSlider" to="." method="_on_angel_slider_value_changed"]
+[connection signal="text_submitted" from="mass edit" to="." method="_on_angeltext_2_text_submitted"]
+[connection signal="text_changed" from="μ" to="." method="_on_μ_text_changed"]
